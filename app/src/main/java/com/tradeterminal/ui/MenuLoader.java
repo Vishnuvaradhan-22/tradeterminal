@@ -1,4 +1,4 @@
-package com.tradeterminal.utilities;
+package com.tradeterminal.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
