@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.tradeterminal.R;
-import com.tradeterminal.ui.HomeScreenActivity;
 
 /**
  * Created by Vish on 14/04/2017.
@@ -15,7 +14,7 @@ import com.tradeterminal.ui.HomeScreenActivity;
 public class MenuLoader extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu,menu);
+        menuInflater.inflate(R.menu.loggedin_activity,menu);
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item) {
