@@ -19,15 +19,13 @@ import java.io.IOException;
 public class WebServiceGateway extends AsyncTask<String,Void,String> {
 
     private String jsonData;
-    private String url;
     private Context context;
     private DataLoader dataLoader;
     private ProgressDialog progressDialog;
 
-    public WebServiceGateway(Context context, String url){
+    public WebServiceGateway(Context context){
         this.dataLoader = (DataLoader)context;
         this.context = context;
-        this.url = url;
 
     }
 
@@ -53,7 +51,7 @@ public class WebServiceGateway extends AsyncTask<String,Void,String> {
 
         switch(strings[0]){
             case "get":
-                httpGet = new HttpGet(this.url);
+                httpGet = new HttpGet(strings[1]);
                 try {
                     httpResponse = httpClient.execute(httpGet);
                     jsonData = EntityUtils.toString(httpResponse.getEntity());
