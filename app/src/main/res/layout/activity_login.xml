@@ -3,14 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.tradeterminal.LoginActivity">
+    tools:context=".ui.LoginActivity">
 
-    <TextView
+<android.support.v7.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?actionBarSize"
+    android:id="@+id/action_menu_bar"
+    android:background="#dd242b2a">
+    <ImageView
+        android:layout_width="300sp"
+        android:layout_height="70sp"
+        android:layout_gravity="center"
+        android:src="@drawable/trade_terminal"
+        android:id="@+id/iv_logo" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/ll_login_panel">
+
+        <EditText
+            android:layout_width="400sp"
+            android:layout_height="80sp"
+            android:id="@+id/et_email_id"
+            android:hint="@string/email_hint"
+            android:textSize="22sp"/>
+
+        <EditText
+            android:layout_width="400sp"
+            android:layout_height="80sp"
+            android:id="@+id/et_password"
+            android:hint="@string/password_hint"
+            android:textSize="22sp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="60sp"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:background="?colorPrimary"
+        android:id="@+id/btn_login"
+        android:layout_below="@+id/ll_login_panel"
+        android:layout_marginTop="20sp"
+        android:layout_alignLeft="@+id/ll_login_panel"
+        android:layout_alignStart="@+id/ll_login_panel"
+        android:layout_alignRight="@+id/ll_login_panel"
+        android:layout_alignEnd="@+id/ll_login_panel" />
 </RelativeLayout>
