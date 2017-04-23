@@ -36,7 +36,7 @@ public class WebServiceGateway extends AsyncTask<String,Void,String> {
         progressDialog.setTitle("Trade Terminal");
         progressDialog.setMessage("Loading");
         progressDialog.setIndeterminate(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMax(100);
         progressDialog.setCancelable(false);
         progressDialog.show();
