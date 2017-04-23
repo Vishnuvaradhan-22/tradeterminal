@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.HomeScreenActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -17,6 +18,25 @@
             android:src="@drawable/trade_terminal"
             android:id="@+id/iv_logo" />
     </android.support.v7.widget.Toolbar>
-
+    <com.alamkanak.weekview.WeekView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/action_menu_bar"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp"
+        android:id="@+id/cal_week_view"
+        app:eventTextColor="@android:color/white"
+        app:textSize="12sp"
+        app:hourHeight="30dp"
+        app:headerColumnPadding="8dp"
+        app:headerColumnTextColor="#8f000000"
+        app:headerRowPadding="12dp"
+        app:columnGap="2dp"
+        app:noOfVisibleDays="5"
+        app:headerRowBackgroundColor="#ffefefef"
+        app:dayBackgroundColor="#05000000"
+        app:todayBackgroundColor="#1848adff"
+        app:headerColumnBackground="#ffffffff"/>
 
 </RelativeLayout>
