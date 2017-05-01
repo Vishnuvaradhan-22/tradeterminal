@@ -1,12 +1,14 @@
 package com.tradeterminal.model;
 
+import com.alamkanak.weekview.WeekViewEvent;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  * Created by Vish on 23/04/2017.
  */
-public class Booking implements Serializable {
+public class Booking extends WeekViewEvent implements Serializable {
     private String uniqueId;
     private String firstName;
     private String lastName;

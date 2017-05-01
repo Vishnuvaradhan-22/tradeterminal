@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
-
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+}
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -25,4 +29,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     compile 'com.github.alamkanak:android-week-view:1.2.6'
+    compile(name:'Common-2017.1.118-trial-release',ext:'aar')
+    compile(name:'Input-2017.1.118-trial-release',ext:'aar')
+    compile 'com.android.volley:volley:1.0.0'
 }

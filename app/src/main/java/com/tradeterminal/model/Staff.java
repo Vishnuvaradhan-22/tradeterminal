@@ -10,7 +10,7 @@ import java.util.List;
 public class Staff implements Serializable {
     private long staffId;
     private String staffName;
-    private String appointmentColor;
+    private String color;
     private long serviceId;
     private String dayOff;
     private List<Calendar> leaveDate;
@@ -31,12 +31,12 @@ public class Staff implements Serializable {
         this.staffName = staffName;
     }
 
-    public String getAppointmentColor() {
-        return appointmentColor;
+    public String getColor() {
+        return color;
     }
 
-    public void setAppointmentColor(String appointmentColor) {
-        this.appointmentColor = appointmentColor;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public long getServiceId() {

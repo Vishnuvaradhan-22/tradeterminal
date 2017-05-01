@@ -13,6 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.tradeterminal.R;
 import com.tradeterminal.model.User;
 import com.tradeterminal.utility.DataLoader;
@@ -25,7 +35,7 @@ import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity implements DataLoader{
+public class LoginActivity extends AppCompatActivity{
 
     private EditText etEmailId;
     private EditText etPassword;
@@ -76,10 +86,27 @@ public class LoginActivity extends AppCompatActivity implements DataLoader{
         boolean passwordValidationResult = validatePassword(password);
 
         if(emailValidationResult && passwordValidationResult){
-            new WebServiceGateway(this).execute(getUrl);
-            /**Intent intent = new Intent();
-            intent.setClass(getApplicationContext(), HomeScreenActivity.class);
-            startActivity(intent);**/
+            final RequestQueue mRequestQueue;
+            Cache cache = new DiskBasedCache(getCacheDir(),1024*1024);
+            Network network = new BasicNetwork(new HurlStack());
+            mRequestQueue = new RequestQueue(cache,network);
+
+            mRequestQueue.start();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,getUrl[1],null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    mRequestQueue.stop();
+                    loadData(response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+            mRequestQueue.add(jsonObjectRequest);
+            //new WebServiceGateway(this).execute(getUrl);
+
         }
     }
 
@@ -104,12 +131,14 @@ public class LoginActivity extends AppCompatActivity implements DataLoader{
             return false;
     }
 
-    @Override
-    public void loadData(String jsonData) {
+
+    public void loadData(JSONObject responseJson) {
         try {
-            JSONObject responseJson = new JSONObject(jsonData);
+
+
             boolean availability = Boolean.parseBoolean(responseJson.getString("IsSuccess"));
             if(availability){
+
                 JSONObject userObjectJson = new JSONObject(responseJson.getString("ReturnModel"));
                 User user = new User();
                 user.setUserName(userObjectJson.getString("Username"));
@@ -128,6 +157,7 @@ public class LoginActivity extends AppCompatActivity implements DataLoader{
                     Intent intent = new Intent();
                     Bundle userData = new Bundle();
                     userData.putSerializable("User",user);
+                    intent.putExtra("UserBundle",userData);
                     intent.setClass(getApplicationContext(),HomeScreenActivity.class);
                     startActivity(intent);
                 }
