@@ -12,7 +12,14 @@ public class Service implements Serializable {
     private String categoryName;
     private long categoryId;
     private String color;
-    private int duration;
+    private String duration;
+    private String timeDuration;
+    private String price;
+    private String paymentType;
+    private String description;
+    private String deposit;
+    private long paymentTypeId;
+
     private List<Staff> staffs;
 
     public long getId() {
@@ -55,14 +62,6 @@ public class Service implements Serializable {
         this.color = color;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
     public List<Staff> getStaffs() {
         return staffs;
     }
@@ -78,5 +77,61 @@ public class Service implements Serializable {
         }
         else
             return false;
+    }
+
+    public String getTimeDuration() {
+        return timeDuration;
+    }
+
+    public void setTimeDuration(String timeDuration) {
+        this.timeDuration = timeDuration;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(String deposit) {
+        this.deposit = deposit;
+    }
+
+    public long getPaymentTypeId() {
+        return paymentTypeId;
+    }
+
+    public void setPaymentTypeId(long paymentTypeId) {
+        this.paymentTypeId = paymentTypeId;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

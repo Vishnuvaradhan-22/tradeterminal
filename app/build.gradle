@@ -32,4 +32,5 @@ dependencies {
     compile(name:'Common-2017.1.118-trial-release',ext:'aar')
     compile(name:'Input-2017.1.118-trial-release',ext:'aar')
     compile 'com.android.volley:volley:1.0.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 }

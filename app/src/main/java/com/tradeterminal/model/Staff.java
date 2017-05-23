@@ -12,6 +12,7 @@ public class Staff implements Serializable {
     private String staffName;
     private String color;
     private long serviceId;
+    private String jobTitle;
     private String dayOff;
     private List<Calendar> leaveDate;
 
@@ -61,5 +62,13 @@ public class Staff implements Serializable {
 
     public void setLeaveDate(List<Calendar> leaveDate) {
         this.leaveDate = leaveDate;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 }

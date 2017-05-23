@@ -1,7 +1,9 @@
 package com.tradeterminal.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 import com.tradeterminal.R;
 import com.tradeterminal.model.User;
 import com.tradeterminal.utility.DataLoader;
@@ -47,6 +50,7 @@ public class LoginActivity extends AppCompatActivity{
     private final String email_patters = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    private SharedPreferences msharedPreferences;
     private String loginUrl = "http://api.tradeterminal.com.au/api/Login/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class LoginActivity extends AppCompatActivity{
 
         loginButton = (Button)findViewById(R.id.btn_login);
         loginButton.setOnClickListener(loginListener);
+        msharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
     }
 
@@ -154,10 +159,13 @@ public class LoginActivity extends AppCompatActivity{
                 user.setToken(userObjectJson.getString("Token"));
                 user.setUniqueId(userObjectJson.getString("UniqueId"));
                 if(user.isActive()){
+                    SharedPreferences.Editor editor = msharedPreferences.edit();
+                    Gson gson = new Gson();
+                    String userJson = gson.toJson(user);
+                    editor.putString("User",userJson);
+                    editor.apply();
                     Intent intent = new Intent();
                     Bundle userData = new Bundle();
-                    userData.putSerializable("User",user);
-                    intent.putExtra("UserBundle",userData);
                     intent.setClass(getApplicationContext(),HomeScreenActivity.class);
                     startActivity(intent);
                 }
